@@ -15,13 +15,13 @@ const geistMono = Geist_Mono({
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
   ? new URL(process.env.NEXT_PUBLIC_BASE_URL)
-  : new URL("https://koshi-nakano.vercel.app");
+  : new URL("https://nakano-system.vercel.app");
 
 export const metadata: Metadata = {
   metadataBase: baseUrl,
   title: {
-    template: "%s | Koshi Nakano",
-    default: "Koshi Nakano | AI-native full-stack engineer",
+    template: "%s | Nakano System",
+    default: "Nakano System | AI-native full-stack engineer",
   },
   description: "要件定義からフロント・バック・インフラ・MLまで、分業なしで一人で完結させるAIネイティブなフルスタックエンジニア。",
   keywords: [
@@ -34,21 +34,20 @@ export const metadata: Metadata = {
     "LightGBM",
     "AWS",
     "GCP",
-    "Koshi Nakano",
-    "中野康志",
+    "Nakano System",
   ],
-  authors: [{ name: "Koshi Nakano" }],
+  authors: [{ name: "Nakano System" }],
   openGraph: {
-    title: "Koshi Nakano | AI-native full-stack engineer",
+    title: "Nakano System | AI-native full-stack engineer",
     description: "要件定義から実装・MLまで一人で完結。AIプロダクトの開発や、経営層向けAIニュース配信など、ビジネスの課題をAI実装力で突破します。",
     type: "website",
     locale: "ja_JP",
     url: baseUrl,
-    siteName: "Koshi Nakano Portfolio",
+    siteName: "Nakano System",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Koshi Nakano | AI-native full-stack engineer",
+    title: "Nakano System | AI-native full-stack engineer",
     description: "要件定義から実装・MLまで一人で完結。AIプロダクトの開発や、経営層向けAIニュース配信など、ビジネスの課題をAI実装力で突破します。",
     creator: "@koshi_nakano",
   },

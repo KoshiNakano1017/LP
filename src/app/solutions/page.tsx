@@ -16,7 +16,7 @@ export default function SolutionsPage() {
       {/* Navigation */}
       <nav className="border-b bg-white sticky top-0 z-10 px-6 sm:px-12 py-4 flex justify-between items-center">
         <Link href="/" className="font-bold text-xl tracking-tight text-gray-800 hover:text-blue-600 transition">
-          Koshi Nakano
+          Nakano System
         </Link>
         <div className="flex items-center space-x-4">
           <select

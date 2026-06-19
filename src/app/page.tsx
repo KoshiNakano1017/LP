@@ -26,6 +26,52 @@ export default function Home() {
     return matchTitle || matchTech || matchDesc;
   });
 
+  const personalProjects = filteredProjects.filter(p => p.category === "personal");
+  const professionalProjects = filteredProjects.filter(p => p.category === "professional");
+
+  const ProjectCard = ({ project }: { project: Project }) => (
+    <div key={project.id} className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition">
+      <div className="flex flex-col sm:flex-row sm:items-start justify-between mb-2">
+        <h3 className="text-xl font-bold text-gray-900">
+          {project.title}
+        </h3>
+        <span className="text-sm text-gray-500 mt-1 sm:mt-0 whitespace-nowrap bg-gray-50 px-2 py-1 rounded">
+          {project.period}
+        </span>
+      </div>
+      
+      <p className="text-blue-600 font-medium text-sm mb-4">
+        {project.role}
+      </p>
+      
+      <ul className="list-disc list-inside text-gray-700 space-y-1 mb-4 text-sm sm:text-base">
+        {project.description.map((desc, idx) => (
+          <li key={idx}>{desc}</li>
+        ))}
+      </ul>
+
+      <div className="flex flex-wrap gap-2 mb-3">
+        {project.technologies.map((tech) => (
+          <span key={tech} className="bg-blue-50 text-blue-700 border border-blue-100 px-2 py-1 rounded text-xs font-medium">
+            {tech}
+          </span>
+        ))}
+      </div>
+
+      {project.link && (
+        <a
+          href={project.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-sm text-blue-600 hover:underline flex items-center mt-2"
+        >
+          <FaGithub size={14} className="mr-1" />
+          {ui.viewRepo}
+        </a>
+      )}
+    </div>
+  );
+
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900 font-sans">
       {/* Header / Hero Section */}
@@ -176,59 +222,48 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="space-y-8">
+          <div className="space-y-12">
             {filteredProjects.length === 0 ? (
               <p className="text-gray-500 italic">{ui.noProjects}</p>
             ) : (
-              filteredProjects.map((project: Project) => (
-                <div key={project.id} className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition">
-                  <div className="flex flex-col sm:flex-row sm:items-start justify-between mb-2">
-                    <h3 className="text-xl font-bold text-gray-900">
-                      {project.title}
+              <>
+                {/* Professional Experience Section */}
+                {professionalProjects.length > 0 && (
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-700 mb-6 flex items-center">
+                      <span className="bg-green-100 text-green-800 px-3 py-1 rounded-md text-sm mr-3">Work</span>
+                      {ui.professionalExp}
                     </h3>
-                    <span className="text-sm text-gray-500 mt-1 sm:mt-0 whitespace-nowrap bg-gray-50 px-2 py-1 rounded">
-                      {project.period}
-                    </span>
+                    <div className="space-y-6">
+                      {professionalProjects.map((project) => (
+                        <ProjectCard key={project.id} project={project} />
+                      ))}
+                    </div>
                   </div>
-                  
-                  <p className="text-blue-600 font-medium text-sm mb-4">
-                    {project.role}
-                  </p>
-                  
-                  <ul className="list-disc list-inside text-gray-700 space-y-1 mb-4 text-sm sm:text-base">
-                    {project.description.map((desc, idx) => (
-                      <li key={idx}>{desc}</li>
-                    ))}
-                  </ul>
+                )}
 
-                  <div className="flex flex-wrap gap-2 mb-3">
-                    {project.technologies.map((tech) => (
-                      <span key={tech} className="bg-blue-50 text-blue-700 border border-blue-100 px-2 py-1 rounded text-xs font-medium">
-                        {tech}
-                      </span>
-                    ))}
+                {/* Personal Development Section */}
+                {personalProjects.length > 0 && (
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-700 mb-6 flex items-center">
+                      <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-md text-sm mr-3">Personal</span>
+                      {ui.personalDev}
+                    </h3>
+                    <div className="space-y-6">
+                      {personalProjects.map((project) => (
+                        <ProjectCard key={project.id} project={project} />
+                      ))}
+                    </div>
                   </div>
-
-                  {project.link && (
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm text-blue-600 hover:underline flex items-center mt-2"
-                    >
-                      <FaGithub size={14} className="mr-1" />
-                      {ui.viewRepo}
-                    </a>
-                  )}
-                </div>
-              ))
+                )}
+              </>
             )}
           </div>
         </section>
       </main>
 
       <footer className="bg-white border-t py-8 mt-16 text-center text-gray-500 text-sm">
-        <p>© {new Date().getFullYear()} Koshi Nakano. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Nakano System. All rights reserved.</p>
       </footer>
     </div>
   );

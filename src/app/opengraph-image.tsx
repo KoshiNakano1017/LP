@@ -2,7 +2,7 @@ import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
 
-export const alt = 'Koshi Nakano | AI-native full-stack engineer';
+export const alt = 'Nakano System | AI-native full-stack engineer';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -64,7 +64,7 @@ export default async function Image() {
             letterSpacing: -1,
           }}
         >
-          Koshi Nakano
+          Nakano System
         </div>
 
         {/* Tagline */}
@@ -127,7 +127,7 @@ export default async function Image() {
             fontSize: 18,
           }}
         >
-          koshi-nakano.vercel.app
+          nakano-system.vercel.app
         </div>
       </div>
     ),

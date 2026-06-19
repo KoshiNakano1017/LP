@@ -6,6 +6,7 @@ export type Project = {
   description: string[];
   technologies: string[];
   link?: string;
+  category: "personal" | "professional";
 };
 
 export type ProfileData = {
@@ -47,7 +48,7 @@ const skillsEn = {
 };
 
 export const profileDataJa: ProfileData = {
-  name: "Koshi Nakano",
+  name: "Nakano System",
   title: "AI-native full-stack engineer",
   catchphrase: "Ships solo from spec to infra.",
   description: "要件定義からフロント・バック・インフラ・MLまで、分業なしで一人で完結させます。",
@@ -63,7 +64,7 @@ export const profileDataJa: ProfileData = {
 };
 
 export const profileDataEn: ProfileData = {
-  name: "Koshi Nakano",
+  name: "Nakano System",
   title: "AI-native full-stack engineer",
   catchphrase: "Ships solo from spec to infra.",
   description: "End-to-end delivery from requirements definition to frontend, backend, infrastructure, and ML — fully handled solo without division of labor.",
@@ -81,16 +82,69 @@ export const profileDataEn: ProfileData = {
 export const projectsDataJa: Project[] = [
   {
     id: "0",
-    title: "プライバシー保護型エッジAI推論システム（リアルタイム表情分類）",
-    period: "個人開発 / 受託",
+    title: "プライバシー保護型エッジAI基盤 (画像を送らないAI推論)",
+    period: "2024年10月 ～ 現在",
     role: "アーキテクチャ設計〜ML実装",
     description: [
-      "顔画像をサーバーに送らず、エッジ側（クライアント）で15点の顔特徴点を抽出し、軽量な座標データのみを送信するエッジ＆クラウド協調アーキテクチャを設計。",
-      "座標データの正規化（位置・スケール補正）前処理パイプラインを実装。",
-      "ディープラーニングではなく軽量・高速・説明可能なSVM（サポートベクターマシン）を選定し、リアルタイム2値分類の推論APIを構築。",
-      "重い画像転送を排した低レイテンシ・低通信コスト・プライバシーバイデザインな推論基盤として汎用化（ジェスチャー認識・異常検知等に転用可能）。"
+      "顔画像などの重い個人データをサーバーに送信せず、クライアント端末側で特徴点（座標）抽出まで完結。サーバーには軽量な座標データのみを送る「エッジ＆クラウド協調型」アーキテクチャで、通信コスト・サーバー負荷・プライバシーリスクを同時に削減。",
+      "「とりあえずディープラーニング」ではなく、課題に応じて軽量・高速・説明可能なSVM（サポートベクターマシン）を選定。リアルタイム2値分類を低レイテンシで実現。",
+      "想定ニーズ: 個人情報を扱う表情・ジェスチャー認識、店舗の匿名属性分析、医療・ヘルスケアの異常検知など。"
     ],
-    technologies: ["Python", "SVM", "scikit-learn", "FastAPI", "リアルタイム推論API", "エッジAI", "JavaScript"]
+    technologies: ["Python", "SVM", "scikit-learn", "FastAPI", "Edge AI", "JavaScript"],
+    category: "personal"
+  },
+  {
+    id: "2",
+    title: "AI自動動画生成パイプライン (議事録・テキストの動画化)",
+    period: "2024年8月 ～ 現在",
+    role: "Full-stack Developer",
+    description: [
+      "文字だけでは伝わりにくい議事録、社内マニュアル、研修資料を、AIが全自動で動画化。視覚的・聴覚的なアプローチにより、社内共有の質や理解度を劇的に向上。",
+      "テキストデータをAPIに投げるだけで、裏側の非同期処理が「台本生成 → 音声合成 → 動画レンダリング」まで自動完結。",
+      "想定ニーズ: 営業資料の動画化、社内研修の自動作成、YouTube等のSNSコンテンツ量産。"
+    ],
+    technologies: ["FastAPI", "Celery", "Remotion", "TypeScript", "Python", "Text to Video"],
+    link: "https://github.com/KoshiNakano1017/conversation_movie",
+    category: "personal"
+  },
+  {
+    id: "9",
+    title: "自社データ特化型 LINE × RAG AIアシスタント",
+    period: "2024年11月 ～ 現在",
+    role: "Full-stack Developer",
+    description: [
+      "社内ドキュメントや独自データを学習させた高精度なAIアシスタントを、LINEインターフェースで提供。顧客対応の自動化や、社内問い合わせの工数を大幅に削減。",
+      "既存のマニュアル（PDF等）をベクトルDB化し、LLMと連携。ユーザーはLINEで質問するだけで、自社データに基づいた正確な回答を得られます。",
+      "想定ニーズ: BtoCカスタマーサポート、社内ヘルプデスク（情シス・労務対応）、専門知識のナレッジベース化。"
+    ],
+    technologies: ["Python", "RAG", "LINE Messaging API", "Vector DB", "LLM"],
+    category: "personal"
+  },
+  {
+    id: "10",
+    title: "AIモーニングニュース (LINE × 動画 複合ソリューション)",
+    period: "2025年1月 ～ 現在",
+    role: "Full-stack Developer",
+    description: [
+      "LINE RAGBOTとAI動画生成を組み合わせた、経営層向けの次世代情報共有ソリューション。社内の一次情報（売上、日報等）をAIが毎朝自動で動画ニュース化し、LINEでお届け。",
+      "「何を調べるべきか」探す時間や報告待ちのタイムロスをゼロに。情報収集を「受動化」し、経営判断に直結する時間を最大化。",
+      "運用方法: SaaS/DBからRAGで収集 → 台本化 → 動画生成 → 毎朝定時にLINE配信。"
+    ],
+    technologies: ["LINE API", "RAG", "Video Generation", "Python", "Automation"],
+    category: "personal"
+  },
+  {
+    id: "11",
+    title: "X(Twitter)半自動投稿システム (AI生成 × 承認フロー)",
+    period: "2025年3月 ～ 現在",
+    role: "Developer",
+    description: [
+      "AIがツイート文案を自動生成し、Notionでワンタップ承認するだけでXへ自動投稿。完全サーバーレス（GAS）構成で、月額コスト約300円の超低コスト運用を実現。",
+      "「自動化したいが垢BANは避けたい」運用者向けに、人間の承認を挟んだ安全な設計。完全放置の暴走が起きない。",
+      "想定ニーズ: 個人ブランディングの自動化、コンテンツ発信の継続支援、低コストなSNS運用。"
+    ],
+    technologies: ["Google Apps Script", "Gemini API", "Notion API", "X API v2"],
+    category: "personal"
   },
   {
     id: "1",
@@ -98,35 +152,25 @@ export const projectsDataJa: Project[] = [
     period: "2026年3月 ～ 現在",
     role: "要件定義〜結合テスト (個人受注)",
     description: [
-      "要件定義・システム全体アーキテクチャ設計・フロント・インフラ・AI構築までを一人で完結。",
-      "ユーザーライフサイクルに応じた権限管理・課金導線の策定および実装。",
-      "Next.js + Supabase + Stripeを用いたサブスクリプション基盤の構築。",
-      "Python / LightGBM を用いた予測モデルとETLパイプラインの構築。"
+      "過去の膨大なデータから未来の数値を高精度に予測。フロントエンド、権限管理、サブスク課金を一体化したシステム。マネタイズや業務改善に直結。",
+      "データ抽出・加工(ETL)から機械学習モデル(LightGBM等)の学習・推論までをパイプライン化。予測結果はNext.jsで可視化し、Stripe連携で自動課金を実現。",
+      "想定ニーズ: 需要予測、ダイナミックプライシング、独自データを活用した会員制SaaSビジネス。"
     ],
-    technologies: ["Python", "Next.js", "TypeScript", "Tailwind CSS", "Supabase", "Stripe", "LightGBM", "GCP", "Vercel"]
+    technologies: ["Python", "Next.js", "TypeScript", "Tailwind CSS", "Supabase", "Stripe", "LightGBM", "GCP", "Vercel"],
+    category: "professional"
   },
   {
-    id: "2",
-    title: "AI動画自動生成 (conversation_movie)",
-    period: "個人開発",
-    role: "Full-stack Developer",
-    description: [
-      "台本生成から動画レンダリングまでの非同期パイプラインを設計・実装。"
-    ],
-    technologies: ["FastAPI", "Celery", "Remotion", "TypeScript", "Python"],
-    link: "https://github.com/KoshiNakano1017/conversation_movie"
-  },
-  {
-    id: "3",
+    id: "8",
     title: "士業向けAIチャットボット・コンタクトセンター品質評価システムの開発",
-    period: "2025年10月 ～ 2026年2月",
+    period: "2025年10月 ～現在",
     role: "要件定義〜結合テスト (フリーランス)",
     description: [
       "LLM組み込みチャット機能の実装、API設計書からのソースコード自動生成および修正。",
       "コンタクトセンター品質評価システムの要件定義（業務フロー・画面遷移図作成）。",
       "TerraformによるCI/CD方式設計・構築。"
     ],
-    technologies: ["Python", "React.js", "TypeScript", "AWS", "Docker", "Terraform"]
+    technologies: ["Python", "React.js", "TypeScript", "AWS", "Docker", "Terraform"],
+    category: "professional"
   },
   {
     id: "4",
@@ -138,7 +182,8 @@ export const projectsDataJa: Project[] = [
       "オフショアへの作業指示、進捗管理、コードレビューの実施。",
       "Vue3・Pythonを用いた一部実装とテスト仕様書作成。"
     ],
-    technologies: ["Python", "Vue.js", "TypeScript", "AWS", "PostgreSQL"]
+    technologies: ["Python", "Vue.js", "TypeScript", "AWS", "PostgreSQL"],
+    category: "professional"
   },
   {
     id: "5",
@@ -149,7 +194,8 @@ export const projectsDataJa: Project[] = [
       "投資ポートフォリオ照会アプリの詳細設計・実装。",
       "開発環境におけるAWS環境整備、コストの見える化、ALBからNLBへの変更等。"
     ],
-    technologies: ["Python", "Vue.js", "AWS", "Laravel"]
+    technologies: ["Python", "Vue.js", "AWS", "Laravel"],
+    category: "professional"
   },
   {
     id: "6",
@@ -161,7 +207,8 @@ export const projectsDataJa: Project[] = [
       "インフラ移行プロジェクトおよび新規機能追加プロジェクトのPMO（ベンダーコントロール、タスク管理）。",
       "通信系会社のシンクライアントサーバーSaaS化PoCへの参画（AWS環境構築・方式検討）。"
     ],
-    technologies: ["Excel VBA", "AWS", "Ruby on Rails", "MySQL"]
+    technologies: ["Excel VBA", "AWS", "Ruby on Rails", "MySQL"],
+    category: "professional"
   },
   {
     id: "7",
@@ -172,23 +219,77 @@ export const projectsDataJa: Project[] = [
       "要件定義（議事録・叩き台作成）から基本設計（基本設計書・DFD作成）。",
       "在庫管理機能の実装および単体テスト実施。"
     ],
-    technologies: ["PHP", "Laravel", "Vue.js", "Python", "Oracle"]
+    technologies: ["PHP", "Laravel", "Vue.js", "Python", "Oracle"],
+    category: "professional"
   }
 ];
 
 export const projectsDataEn: Project[] = [
   {
     id: "0",
-    title: "Privacy-Preserving Edge AI Inference System (Real-time Expression Classification)",
-    period: "Personal / Contract",
+    title: "Privacy-Preserving Edge AI Platform (No-Image Inference)",
+    period: "Oct 2024 - Present",
     role: "Architecture Design to ML Implementation",
     description: [
-      "Designed an edge-cloud cooperative architecture that extracts 15 facial landmarks on the client side and sends only lightweight coordinate data—never the face image—to the server.",
-      "Implemented a preprocessing pipeline for coordinate normalization (position and scale correction).",
-      "Selected a lightweight, fast, and explainable SVM (Support Vector Machine) over deep learning, building a real-time binary classification inference API.",
-      "Generalized into a low-latency, low-bandwidth, privacy-by-design inference platform (reusable for gesture recognition, anomaly detection, etc.)."
+      "Heavy personal data like face images never leaves the device—feature extraction (coordinates) is completed on the client. Only lightweight coordinate data is sent to the server. This edge-cloud cooperative architecture cuts bandwidth, server load, and privacy risk.",
+      "Rather than defaulting to deep learning, I select a lightweight, fast, and explainable SVM matched to the task—delivering real-time binary classification at low latency.",
+      "Use Cases: Expression/gesture recognition handling personal data, anonymous in-store analytics, and anomaly detection in healthcare."
     ],
-    technologies: ["Python", "SVM", "scikit-learn", "FastAPI", "Real-time Inference API", "Edge AI", "JavaScript"]
+    technologies: ["Python", "SVM", "scikit-learn", "FastAPI", "Edge AI", "JavaScript"],
+    category: "personal"
+  },
+  {
+    id: "2",
+    title: "AI Video Generation Pipeline (Auto Video from Text)",
+    period: "Aug 2024 - Present",
+    role: "Full-stack Developer",
+    description: [
+      "Automatically convert text-heavy meeting minutes, internal manuals, and training materials into engaging videos using AI. Enhances internal knowledge sharing and comprehension through visual and auditory approaches.",
+      "Simply send text data to the API, and background asynchronous tasks handle the rest—from script generation to voice synthesis and video rendering.",
+      "Use Cases: Video conversion of sales decks, auto-creation of internal training, and mass production of SNS content like YouTube."
+    ],
+    technologies: ["FastAPI", "Celery", "Remotion", "TypeScript", "Python", "Text to Video"],
+    link: "https://github.com/KoshiNakano1017/conversation_movie",
+    category: "personal"
+  },
+  {
+    id: "9",
+    title: "Custom Data Specialized LINE × RAG AI Assistant",
+    period: "Nov 2024 - Present",
+    role: "Full-stack Developer",
+    description: [
+      "Provides a highly accurate AI assistant trained on internal documents and proprietary data via the familiar LINE interface. Automates customer responses and significantly reduces internal inquiry workloads.",
+      "Vectorize existing manuals (PDFs) and connect with LLMs. Users simply ask questions on LINE as usual to get accurate answers based on your company's data.",
+      "Use Cases: B2C customer support, internal helpdesk (IT/HR support), and knowledge base for specialized domains."
+    ],
+    technologies: ["Python", "RAG", "LINE Messaging API", "Vector DB", "LLM"],
+    category: "personal"
+  },
+  {
+    id: "10",
+    title: "Executive Morning AI News (LINE × Video Solution)",
+    period: "Jan 2025 - Present",
+    role: "Full-stack Developer",
+    description: [
+      "A next-generation information-sharing solution for executives, combining LINE RAGBOT with AI video generation. Automatically transforms internal primary info (sales, reports) into a morning video digest delivered to LINE.",
+      "Eliminates time spent searching for \"what to look into\" and waiting for reports. By turning information gathering passive, it maximizes time for management decisions.",
+      "Operation: Gathers data from SaaS/DBs via RAG → Scripts → Generates Video → Delivered to LINE every morning."
+    ],
+    technologies: ["LINE API", "RAG", "Video Generation", "Python", "Automation"],
+    category: "personal"
+  },
+  {
+    id: "11",
+    title: "X (Twitter) Semi-Auto Posting System (AI Gen × Approval)",
+    period: "Mar 2025 - Present",
+    role: "Developer",
+    description: [
+      "AI auto-generates tweet drafts; approve them with one tap in Notion on your phone, and they post to X automatically. Fully serverless (GAS) with running costs of about $2/month.",
+      "Safe semi-automation with a human approval step—built for operators who want automation without risking bans. Designed so it never runs wild unattended.",
+      "Use Cases: Automating personal branding, consistent posting for side-businesses, and low-cost SNS operation for solo owners."
+    ],
+    technologies: ["Google Apps Script", "Gemini API", "Notion API", "X API v2"],
+    category: "personal"
   },
   {
     id: "1",
@@ -196,35 +297,38 @@ export const projectsDataEn: Project[] = [
     period: "Mar 2026 - Present",
     role: "Requirements Definition to Integration Testing (Freelance)",
     description: [
-      "Independently managed the entire lifecycle including requirements definition, system architecture, frontend, infrastructure, and AI model deployment.",
-      "Designed and implemented role-based access control and billing flows based on user lifecycles.",
-      "Built a subscription platform using Next.js, Supabase, and Stripe.",
-      "Developed predictive models and ETL pipelines using Python and LightGBM."
+      "Predicts future figures with high accuracy from vast historical data. Integrated system with frontend, user permissions, and subscription billing. Leads directly to monetization and improvements.",
+      "Pipelined from ETL to machine learning (LightGBM) training and inference. Visualizes results on a modern Web frontend (Next.js) with automated Stripe billing.",
+      "Use Cases: Demand forecasting, dynamic pricing, and launching membership SaaS businesses using proprietary data."
     ],
-    technologies: ["Python", "Next.js", "TypeScript", "Tailwind CSS", "Supabase", "Stripe", "LightGBM", "GCP", "Vercel"]
+    technologies: ["Python", "Next.js", "TypeScript", "Tailwind CSS", "Supabase", "Stripe", "LightGBM", "GCP", "Vercel"],
+    category: "professional"
   },
   {
-    id: "2",
-    title: "AI Video Generation (conversation_movie)",
-    period: "Personal Project",
-    role: "Full-stack Developer",
+    id: "8",
+    title: "Kyushu Village Talent Development & Gamification App",
+    period: "May 2026 - Present",
+    role: "Requirements Definition to Full-stack Implementation (Freelance)",
     description: [
-      "Designed and implemented an asynchronous pipeline from script generation to video rendering."
+      "Designed and implemented a skill development and quest-based task management system using gamification.",
+      "Built a dynamic wage determination logic based on skills and contributions.",
+      "Developed a platform using Next.js, Supabase, and Stripe."
     ],
-    technologies: ["FastAPI", "Celery", "Remotion", "TypeScript", "Python"],
-    link: "https://github.com/KoshiNakano1017/conversation_movie"
+    technologies: ["Python", "Next.js", "TypeScript", "Tailwind CSS", "Supabase", "Stripe", "LightGBM", "GCP", "Vercel"],
+    category: "professional"
   },
   {
     id: "3",
     title: "AI Chatbot & Contact Center Quality Evaluation System",
-    period: "Oct 2025 - Feb 2026",
+    period: "Oct 2025 - Present",
     role: "Requirements Definition to Integration Testing (Freelance)",
     description: [
       "Implemented an LLM-embedded chat feature, including auto-generating source code from API design documents.",
       "Defined requirements for a contact center quality evaluation system (business flows, screen transitions).",
       "Designed and built CI/CD pipelines using Terraform."
     ],
-    technologies: ["Python", "React.js", "TypeScript", "AWS", "Docker", "Terraform"]
+    technologies: ["Python", "React.js", "TypeScript", "AWS", "Docker", "Terraform"],
+    category: "professional"
   },
   {
     id: "4",
@@ -236,7 +340,8 @@ export const projectsDataEn: Project[] = [
       "Managed offshore teams, provided task instructions, and conducted code reviews.",
       "Implemented partial features using Vue3 and Python, and created test specifications."
     ],
-    technologies: ["Python", "Vue.js", "TypeScript", "AWS", "PostgreSQL"]
+    technologies: ["Python", "Vue.js", "TypeScript", "AWS", "PostgreSQL"],
+    category: "professional"
   },
   {
     id: "5",
@@ -247,7 +352,8 @@ export const projectsDataEn: Project[] = [
       "Detailed design and implementation of an investment portfolio inquiry application.",
       "Maintained AWS environments, visualized costs, and migrated load balancers (ALB to NLB)."
     ],
-    technologies: ["Python", "Vue.js", "AWS", "Laravel"]
+    technologies: ["Python", "Vue.js", "AWS", "Laravel"],
+    category: "professional"
   },
   {
     id: "6",
@@ -259,7 +365,8 @@ export const projectsDataEn: Project[] = [
       "Acted as PMO for infrastructure migration and new feature development projects (vendor control, task management).",
       "Participated in a SaaS PoC for a telecommunications company's thin client server (AWS environment building, method study)."
     ],
-    technologies: ["Excel VBA", "AWS", "Ruby on Rails", "MySQL"]
+    technologies: ["Excel VBA", "AWS", "Ruby on Rails", "MySQL"],
+    category: "professional"
   },
   {
     id: "7",
@@ -270,7 +377,8 @@ export const projectsDataEn: Project[] = [
       "Handled requirements definition (meeting minutes, drafting) to basic design (DFD creation).",
       "Implemented and unit-tested inventory management features."
     ],
-    technologies: ["PHP", "Laravel", "Vue.js", "Python", "Oracle"]
+    technologies: ["PHP", "Laravel", "Vue.js", "Python", "Oracle"],
+    category: "professional"
   }
 ];
 
@@ -287,6 +395,8 @@ export const getPortfolioData = (lang: "ja" | "en") => {
       viewProduct: lang === "ja" ? "AIプロダクト / 提供価値を見る" : "View AI Products / Solutions",
       viewRepo: lang === "ja" ? "リポジトリを見る" : "View Repository",
       contact: lang === "ja" ? "お問い合わせ" : "Contact",
+      personalDev: lang === "ja" ? "個人開発 / 受託" : "Personal Development / Contracts",
+      professionalExp: lang === "ja" ? "職歴 / 参画プロジェクト" : "Professional Experience",
       solutionsTitle: lang === "ja" ? "AIプロダクト / 提供価値" : "AI Products & Solutions",
       solutionsSubTitle: lang === "ja" ? "ビジネスの課題をAIで解決する。" : "Solving Business Challenges with AI."
     }
