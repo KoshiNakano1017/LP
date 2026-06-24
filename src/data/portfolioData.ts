@@ -161,13 +161,16 @@ export const projectsDataJa: Project[] = [
   },
   {
     id: "8",
-    title: "士業向けAIチャットボット・コンタクトセンター品質評価システムの開発",
+    title: "複数案件開発支援",
     period: "2025年10月 ～現在",
     role: "要件定義〜結合テスト (フリーランス)",
     description: [
-      "LLM組み込みチャット機能の実装、API設計書からのソースコード自動生成および修正。",
-      "コンタクトセンター品質評価システムの要件定義（業務フロー・画面遷移図作成）。",
-      "TerraformによるCI/CD方式設計・構築。"
+      "士業向けチャットBOT開発　LLM組み込みのAPI開発、脆弱性診断とクラウド基盤の改修",
+      "コンタクトセンター品質評価システム開発",
+      "・AIツールの導入（議事録自動化ツール、要件定義関連書類自動作成、画面レイアウト自動作成（figma)、マルチエージェントAI）",
+      "・要件定義関連書類作成（業務フロー・NW構成・画面遷移図・テーブル定義書）作成",
+      "・定例会運営、タスク管理",
+      "・CI・CD方式設計・構築（Terraform ）"
     ],
     technologies: ["Python", "React.js", "TypeScript", "AWS", "Docker", "Terraform"],
     category: "professional"
